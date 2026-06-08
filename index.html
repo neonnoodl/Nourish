@@ -824,7 +824,7 @@ document.addEventListener('keydown',e=>{
     hideLoader();
   }
 <script>
-  sb.auth.onAuthStateChange(async (event, session) => {
+sb.auth.onAuthStateChange(async (event, session) => {
   if (event === 'SIGNED_OUT') {
     user = null;
     goals = null;
@@ -840,6 +840,7 @@ document.addEventListener('keydown',e=>{
 
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("./sw.js");
-}</script>
+}
+</script>
 </body>
 </html>
