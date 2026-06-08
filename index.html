@@ -817,13 +817,13 @@ document.addEventListener('keydown',e=>{
 (async () => {
   const { data } = await sb.auth.getSession();
 
-  if (data?.session?.user) {
-    await onLogin(data.session.user);
-  } else {
-    show('authScreen');
-    hideLoader();
-  }
-<script>
+if (data?.session?.user) {
+  await onLogin(data.session.user);
+} else {
+  show('authScreen');
+  hideLoader();
+}
+
 sb.auth.onAuthStateChange(async (event, session) => {
   if (event === 'SIGNED_OUT') {
     user = null;
