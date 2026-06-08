@@ -804,44 +804,55 @@ document.addEventListener('click',e=>{
 let tTimer;
 function toast(msg,type='ok'){const el=document.getElementById('toast');el.textContent=msg;el.className=`toast show ${type}`;clearTimeout(tTimer);tTimer=setTimeout(()=>{el.className='toast'},2400)}
 
-// ── KEYBOARD ──
 <script>
-document.addEventListener('keydown',e=>{
-  if(e.key==='Enter'&&document.getElementById('appScreen').classList.contains('active')){
-    const a=document.activeElement;
-    if(a===document.getElementById('nameIn')||a===document.getElementById('amtIn'))addItem();
+
+// KEYBOARD
+document.addEventListener('keydown', e => {
+  if (
+    e.key === 'Enter' &&
+    document.getElementById('appScreen').classList.contains('active')
+  ) {
+    const a = document.activeElement;
+    if (
+      a === document.getElementById('nameIn') ||
+      a === document.getElementById('amtIn')
+    ) {
+      addItem();
+    }
   }
 });
 
-// ── BOOT ──
-
+// BOOT
 (async () => {
   const { data } = await sb.auth.getSession();
 
-if (data?.session?.user) {
-  await onLogin(data.session.user);
-} else {
-  show('authScreen');
-  hideLoader();
-}
-
-sb.auth.onAuthStateChange(async (event, session) => {
-  if (event === 'SIGNED_OUT') {
-    user = null;
-    goals = null;
-    items = [];
+  if (data?.session?.user) {
+    await onLogin(data.session.user);
+  } else {
     show('authScreen');
-    return;
+    hideLoader();
   }
 
-  if (event === 'SIGNED_IN' && session?.user) {
-    await onLogin(session.user);
-  }
-});
+  sb.auth.onAuthStateChange(async (event, session) => {
+    if (event === 'SIGNED_OUT') {
+      user = null;
+      goals = null;
+      items = [];
+      show('authScreen');
+      return;
+    }
 
-if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("./sw.js");
-}
+    if (event === 'SIGNED_IN' && session?.user) {
+      await onLogin(session.user);
+    }
+  });
+
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("./sw.js");
+  }
+
+})();
+
 </script>
 </body>
 </html>
