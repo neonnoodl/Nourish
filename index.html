@@ -823,24 +823,23 @@ document.addEventListener('keydown',e=>{
     show('authScreen');
     hideLoader();
   }
-
+<script>
   sb.auth.onAuthStateChange(async (event, session) => {
-    if (event === 'SIGNED_OUT') {
-      user = null;
-      goals = null;
-      items = [];
-      show('authScreen');
-      return;
-    }
+  if (event === 'SIGNED_OUT') {
+    user = null;
+    goals = null;
+    items = [];
+    show('authScreen');
+    return;
+  }
 
-    if (event === 'SIGNED_IN' && session?.user) {
-      await onLogin(session.user);
-    }
-  });
-</script>
-if("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("sw.js");
-}
-</script>
+  if (event === 'SIGNED_IN' && session?.user) {
+    await onLogin(session.user);
+  }
+});
+
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("./sw.js");
+}</script>
 </body>
 </html>
