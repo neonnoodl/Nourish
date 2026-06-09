@@ -19,13 +19,17 @@
   --bg:#07090a;--s1:#0d1012;--s2:#131618;--s3:#191d20;--s4:#1f2428;
   --border:#1f2428;--border2:#262c30;
   --g:#6ee7b7;--g2:#34d399;--g3:rgba(110,231,183,0.10);--g4:rgba(110,231,183,0.05);
-  --text:#e4e8e6;--muted:#6b7875;--faint:#2e3835;
+  --text:#000;--muted:#333;--faint:#2e3835;
   --red:#f87171;--amber:#fbbf24;
   --r:14px;
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;font-size:15px;line-height:1.5;overscroll-behavior:none}
+html,body{min-height:100vh;background:linear-gradient(135deg,#f5f5f5,#d9d9d9,#fefefe);color:#000;font-family:'Outfit',sans-serif;font-size:15px;line-height:1.5;overscroll-behavior:none}
 .hidden{display:none!important}
+
+#mcMsg{
+  font-family: inherit;
+}
 
 /* LOADING */
 #ls{position:fixed;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;z-index:500;transition:opacity 0.4s}
@@ -291,7 +295,9 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'O
 <div id="appScreen">
   <div class="aw">
     <div class="tnav">
-      <div class="tnav-logo">N<em>ourish</em></div>
+      <div class="tnav-logo" onclick="goHome()" style="cursor:pointer">
+        N<em>ourish</em>
+        </div>
       <div class="tnav-r">
         <div class="clock-b" id="clockB">--:--:--</div>
         <button class="prof-btn" id="profBtn" onclick="toggleDD()">?</button>
@@ -551,14 +557,21 @@ function showMorning(dk,rows){
   const card=document.getElementById('morningCard');card.classList.remove('hidden');
   const gs=allGoals();
   const con={};gs.forEach(g=>{con[g.id]=0});
-  rows.filter(r=>r.checked).forEach(r=>{if(con[r.goal_id]!==undefined)con[r.goal_id]+=r.amount});
+  rows.filter(r => r.checked).forEach(r => {
+  con.cal += Number(r.calories || 0);
+  con.pro += Number(r.protein || 0);
+  con.carb += Number(r.carbs || 0);
+  con.fat += Number(r.fats || 0);
+});
   const met=gs.filter(g=>con[g.id]>=g.target*0.9).length,tot=gs.length;
   const pct=tot>0?Math.round((met/tot)*100):0;
-  const msg=pct>=90?`Incredible! You hit ${met}/${tot} goals yesterday. That's real discipline. 🔥`:
-    pct>=70?`Strong day — ${met}/${tot} goals reached. You're building momentum. 💪`:
-    pct>=50?`Solid effort. ${met}/${tot} goals met. Small steps compound fast. 🌱`:
-    `Yesterday was a reset. ${met}/${tot} goals met. Today is a brand new start. ✨`;
-  document.getElementById('mcMsg').textContent=msg;
+  const msg=pct>=90?`Incredible! You hit ${met}/${tot} goals yesterday. That's real discipline.`:
+    pct>=70?`Strong day — ${met}/${tot} goals reached. You're building momentum.`:
+    pct>=50?`Solid effort. ${met}/${tot} goals met. Small steps compound fast.`:
+    `Yesterday was a reset. ${met}/${tot} goals met. Today is a brand new start.`;
+  const el = document.getElementById('mcMsg');
+el.textContent = msg;
+el.classList.add('mc-font');
   if(mcChart) mcChart.destroy();
   const ctx=document.getElementById('mcChart').getContext('2d');
   mcChart=new Chart(ctx,{type:'bar',data:{
@@ -723,10 +736,10 @@ function renderList(){
     el.innerHTML=`<div class="chk" onclick="${lk?`toast('Locked','err')`:`toggleItem('${item.id}')`}">${item.checked?'✓':''}</div>
       <div class="food-info"><div class="fn">${esc(item.name)}</div>
       <div class="food-tags">
-${item.calories>0 ? `<span class="ftag">🔥 ${item.calories} kcal</span>` : ''}
-${item.protein>0 ? `<span class="ftag">💪 ${item.protein}g P</span>` : ''}
-${item.carbs>0 ? `<span class="ftag">🍞 ${item.carbs}g C</span>` : ''}
-${item.fat>0 ? `<span class="ftag">🥑 ${item.fats}g F</span>` : ''}
+${item.calories>0 ? `<span class="ftag"> ${item.calories} kcal</span>` : ''}
+${item.protein>0 ? `<span class="ftag"> ${item.protein}g P</span>` : ''}
+${item.carbs>0 ? `<span class="ftag"> ${item.carbs}g C</span>` : ''}
+${item.fat>0 ? `<span class="ftag"> ${item.fats}g F</span>` : ''}
 </div> 
       </div>
       <div class="food-right"><div class="famt">
@@ -795,6 +808,9 @@ async function saveGoalModal(){
 // ── PROFILE DD ──
 function toggleDD(){document.getElementById('profDD').classList.toggle('open')}
 function closeDD(){document.getElementById('profDD').classList.remove('open')}
+function goHome(){
+  show('appScreen');
+}
 document.addEventListener('click',e=>{
   const dd=document.getElementById('profDD'),btn=document.getElementById('profBtn');
   if(dd.classList.contains('open')&&!dd.contains(e.target)&&e.target!==btn)closeDD();
