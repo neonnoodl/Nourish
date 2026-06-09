@@ -495,7 +495,15 @@ async function doSignup(){
   if(!name||!email||!pass){showMsg('authErr','Fill in all fields','err');return}
   if(pass.length<6){showMsg('authErr','Password must be at least 6 characters','err');return}
   const btn=document.getElementById('sBtn');btn.disabled=true;btn.innerHTML='<span class="spinner"></span>Creating…';
-  const {data,error}=await sb.auth.signUp({email,password:pass,options:{data:{display_name:name}}});
+  const {data,error}=await sb.auth.signUp({
+  email,
+  password: pass,
+  options: {
+    data: {
+      display_name: name
+    }
+  }
+});
   btn.disabled=false;btn.textContent='Create Account';
   if(error){showMsg('authErr',error.message,'err');return}
   if(data.user&&!data.session){showMsg('authOk','Check your email to confirm your account, then sign in.','ok');return}
@@ -596,45 +604,7 @@ el.textContent = msg;
 el.classList.add('mc-font');
   if(mcChart) mcChart.destroy();
   const ctx=document.getElementById('mcChart').getContext('2d');
-  mcChart=new Chart(ctx,{type:'bar',data:{
-    labels:gs.map(g=>g.name),
-    datasets:[
-      {label:'Goal',data:gs.map(g=>g.target),backgroundColor:'rgba(110,231,183,0.12)',borderColor:'rgba(110,231,183,0.35)',borderWidth:1,borderRadius:5},
-      {label:'Consumed',data:gs.map(g=>Math.round(con[g.id]*10)/10),backgroundColor:'rgba(110,231,183,0.65)',borderColor:'rgba(110,231,183,1)',borderWidth:1,borderRadius:5}
-    ]},
-    options:{
-  responsive:true,
-  maintainAspectRatio:false,
-
-  plugins:{
-    legend:{
-      labels:{
-        color:'#000',
-        font:{family:'Outfit',size:10}
-      }
-    }
-  },
-
-  scales:{
-    x:{
-      ticks:{
-        color:'#000',
-        font:{family:'Outfit',size:10},
-        maxRotation:0,
-        minRotation:0
-      },
-      grid:{color:'rgba(0,0,0,0.08)'}
-    },
-
-    y:{
-      ticks:{
-        color:'#000',
-        font:{family:'Outfit',size:10}
-      },
-      grid:{color:'rgba(0,0,0,0.08)'}
-    }
-  }
-}
+  
 
 function dismissMorning(){
   const yd=new Date();yd.setDate(yd.getDate()-1);
