@@ -51,9 +51,16 @@ html,body{
 .hidden{display:none!important}
 
 #mcMsg{
-  font-family: inherit;
+  font-family:'Outfit',sans-serif;
+  font-size:15px;
+  color:#000;
 }
 
+.mc-font{
+  font-family:'Outfit',sans-serif;
+  font-size:15px;
+  color:#000;
+}
 /* LOADING */
 #ls{position:fixed;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;z-index:500;transition:opacity 0.4s}
 #ls.fade{opacity:0;pointer-events:none}
@@ -586,12 +593,18 @@ async function checkMorning(){
 function showMorning(dk,rows){
   const card=document.getElementById('morningCard');card.classList.remove('hidden');
   const gs=allGoals();
-  const con={};gs.forEach(g=>{con[g.id]=0});
-  rows.filter(r => r.checked).forEach(r => {
-    con.cal += Number(r.calories || 0);
-    con.pro += Number(r.protein  || 0);
-    con.carb += Number(r.carbs   || 0);
-    con.fat += Number(r.fats     || 0);
+ const con = {
+  cal: 0,
+  pro: 0,
+  carb: 0,
+  fat: 0
+};
+
+rows.filter(r => r.checked).forEach(r => {
+  con.cal += Number(r.calories || 0);
+  con.pro += Number(r.protein || 0);
+  con.carb += Number(r.carbs || 0);
+  con.fat += Number(r.fats || 0);
 });
   const met=gs.filter(g=>con[g.id]>=g.target*0.9).length,tot=gs.length;
   const pct=tot>0?Math.round((met/tot)*100):0;
@@ -604,7 +617,59 @@ el.textContent = msg;
 el.classList.add('mc-font');
   if(mcChart) mcChart.destroy();
   const ctx=document.getElementById('mcChart').getContext('2d');
-  
+
+mcChart = new Chart(ctx,{
+  type:'bar',
+  data:{
+    labels:gs.map(g=>g.name),
+    datasets:[
+      {
+        label:'Goal',
+        data:gs.map(g=>g.target),
+        backgroundColor:'rgba(0,0,0,0.08)',
+        borderColor:'rgba(0,0,0,0.25)',
+        borderWidth:1,
+        borderRadius:5
+      },
+      {
+        label:'Consumed',
+        data:gs.map(g=>Math.round((con[g.id]||0)*10)/10),
+        backgroundColor:'rgba(0,0,0,0.35)',
+        borderColor:'rgba(0,0,0,0.7)',
+        borderWidth:1,
+        borderRadius:5
+      }
+    ]
+  },
+  options:{
+    responsive:true,
+    maintainAspectRatio:false,
+    plugins:{
+      legend:{
+        labels:{
+          color:'#000',
+          font:{family:'Outfit',size:10}
+        }
+      }
+    },
+    scales:{
+      x:{
+        ticks:{
+          color:'#000',
+          maxRotation:0,
+          minRotation:0
+        },
+        grid:{color:'rgba(0,0,0,0.08)'}
+      },
+      y:{
+        ticks:{
+          color:'#000'
+        },
+        grid:{color:'rgba(0,0,0,0.08)'}
+      }
+    }
+  }
+});
 
 function dismissMorning(){
   const yd=new Date();yd.setDate(yd.getDate()-1);
