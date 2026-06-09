@@ -6,12 +6,6 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<link rel="manifest" href="manifest.json">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="Nourish">
-<meta name="theme-color" content="#1f5a44">
 <title>Nourish</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -238,103 +232,6 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'O
   .tnav{padding:12px 0 10px}
   .num-fields{gap:6px}
 }
-
-/* ── PAGE SWIPE SYSTEM ── */
-.page-wrap{display:flex;width:200%;transition:transform 0.38s cubic-bezier(0.4,0,0.2,1);will-change:transform}
-.page-wrap.on-nutrition{transform:translateX(-50%)}
-.page-wrap.on-exercise{transform:translateX(0%)}
-.page{width:50%;min-height:100vh;flex-shrink:0}
-
-/* PAGE TABS */
-.page-tabs{display:flex;background:var(--s2);border-radius:100px;padding:3px;margin:0 16px 18px;max-width:768px;margin-left:auto;margin-right:auto}
-.page-tab{flex:1;padding:8px 12px;border:none;background:none;border-radius:100px;font-family:'JetBrains Mono',monospace;font-size:0.65rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);cursor:pointer;transition:all 0.2s}
-.page-tab.active{background:#fff;color:var(--g2);box-shadow:0 1px 4px rgba(0,0,0,0.08)}
-
-/* ── EXERCISE PAGE ── */
-.ex-wrap{max-width:800px;margin:0 auto;padding:0 16px 100px}
-
-/* REST TIMER — fixed center-right */
-.rest-timer-fab{
-  position:fixed;right:16px;top:50%;transform:translateY(-50%);
-  z-index:60;display:flex;flex-direction:column;align-items:center;gap:6px;
-}
-.rest-timer-btn{
-  width:52px;height:52px;border-radius:50%;background:var(--g2);border:none;
-  cursor:pointer;display:flex;align-items:center;justify-content:center;
-  color:#fff;font-size:1.2rem;box-shadow:0 4px 16px rgba(31,90,68,0.3);
-  transition:all 0.2s;
-}
-.rest-timer-btn:hover{background:var(--g);transform:scale(1.08)}
-.rest-timer-btn.running{background:var(--red)}
-.rest-timer-display{
-  font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--g2);
-  background:#fff;border:1px solid rgba(31,90,68,0.2);border-radius:100px;
-  padding:3px 10px;text-align:center;min-width:52px;
-  box-shadow:0 2px 8px rgba(0,0,0,0.08);
-}
-.rest-timer-display.running{color:var(--red);border-color:rgba(192,57,43,0.3)}
-
-/* REST TIMER MODAL */
-.rtm-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.4);backdrop-filter:blur(4px);z-index:200;display:none;align-items:center;justify-content:center}
-.rtm-overlay.open{display:flex}
-.rtm-card{background:#fff;border-radius:22px;padding:28px 24px;width:280px;box-shadow:0 8px 40px rgba(0,0,0,0.14);animation:mi 0.2s cubic-bezier(0.34,1.56,0.64,1)}
-.rtm-h{font-family:'Cormorant Garamond',serif;font-size:1.3rem;margin-bottom:4px}
-.rtm-sub{font-size:0.78rem;color:var(--muted);margin-bottom:18px}
-.rtm-presets{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
-.rtm-preset{padding:7px 14px;border-radius:100px;border:1px solid var(--border2);background:none;font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--muted);cursor:pointer;transition:all 0.15s}
-.rtm-preset:hover,.rtm-preset.active{background:var(--g3);border-color:var(--g2);color:var(--g2)}
-.rtm-custom{display:flex;gap:8px;margin-bottom:16px;align-items:center}
-.rtm-custom input{flex:1;background:#fff;border:1px solid var(--border2);border-radius:10px;padding:9px 12px;font-family:'JetBrains Mono',monospace;font-size:0.9rem;color:var(--g2);outline:none;text-align:center}
-.rtm-custom input:focus{border-color:var(--g2)}
-.rtm-custom span{font-size:0.75rem;color:var(--muted);white-space:nowrap}
-.rtm-start{width:100%;padding:12px;background:var(--g2);border:none;border-radius:12px;color:#fff;font-family:'Outfit',sans-serif;font-weight:600;font-size:0.9rem;cursor:pointer;transition:background 0.15s}
-.rtm-start:hover{background:var(--g)}
-.rtm-cancel{width:100%;padding:9px;background:none;border:1px solid var(--border2);border-radius:12px;color:var(--muted);font-family:'Outfit',sans-serif;font-size:0.85rem;cursor:pointer;margin-top:8px}
-
-/* EXERCISE ADD PANEL */
-.ex-add-panel{background:#fff;border:1px solid var(--border);border-radius:18px;padding:18px;margin-bottom:18px}
-.ex-add-label{font-family:'JetBrains Mono',monospace;font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
-.ex-name-row{display:flex;gap:8px;margin-bottom:12px;align-items:flex-start}
-.ex-name-wrap{flex:1;position:relative}
-.ex-name-input{width:100%;background:#fff;border:1px solid var(--border2);border-radius:10px;padding:11px 14px;color:var(--text);font-family:'Outfit',sans-serif;font-size:0.88rem;outline:none;transition:border-color 0.2s}
-.ex-name-input:focus{border-color:var(--g2)}
-.ex-name-input::placeholder{color:var(--faint)}
-.ex-dropdown{position:absolute;top:calc(100% + 4px);left:0;right:0;background:#fff;border:1px solid var(--border2);border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,0.1);z-index:30;max-height:180px;overflow-y:auto;display:none}
-.ex-dropdown.open{display:block}
-.ex-dd-item{padding:10px 14px;font-family:'Outfit',sans-serif;font-size:0.88rem;cursor:pointer;transition:background 0.12s;color:var(--text)}
-.ex-dd-item:hover{background:var(--s2)}
-.unit-toggle{display:flex;background:var(--s2);border-radius:8px;padding:2px;flex-shrink:0}
-.unit-btn{padding:8px 12px;border:none;background:none;border-radius:6px;font-family:'JetBrains Mono',monospace;font-size:0.7rem;cursor:pointer;color:var(--muted);transition:all 0.15s}
-.unit-btn.active{background:#fff;color:var(--g2);box-shadow:0 1px 3px rgba(0,0,0,0.08)}
-
-/* SET ROW */
-.set-input-row{display:flex;gap:8px;margin-bottom:10px;align-items:flex-end}
-.set-field{display:flex;flex-direction:column;gap:4px;flex:1}
-.set-field label{font-family:'JetBrains Mono',monospace;font-size:0.52rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--faint)}
-.set-input{width:100%;background:#fff;border:1px solid var(--border2);border-radius:10px;padding:10px 8px;color:var(--g2);font-family:'JetBrains Mono',monospace;font-size:0.9rem;outline:none;text-align:center;transition:border-color 0.2s}
-.set-input:focus{border-color:var(--g2)}
-.set-input::placeholder{color:var(--faint)}
-.add-set-btn{padding:10px 16px;border-radius:10px;background:var(--g2);border:none;cursor:pointer;color:#fff;font-family:'Outfit',sans-serif;font-size:0.85rem;font-weight:600;transition:all 0.15s;flex-shrink:0;white-space:nowrap}
-.add-set-btn:hover{background:var(--g)}
-
-/* EXERCISE ITEMS */
-.ex-list{display:flex;flex-direction:column;gap:12px}
-.ex-item{background:#fff;border:1px solid var(--border);border-radius:14px;padding:14px 16px;animation:si 0.22s cubic-bezier(0.34,1.56,0.64,1)}
-.ex-item-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
-.ex-item-name{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:400;color:var(--text)}
-.ex-item-unit{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--muted);background:var(--s2);padding:3px 8px;border-radius:100px;margin-left:8px}
-.ex-item-del{background:none;border:none;color:var(--faint);cursor:pointer;font-size:1.1rem;transition:color 0.15s;padding:2px}
-.ex-item-del:hover{color:var(--red)}
-.sets-table{width:100%;border-collapse:collapse}
-.sets-table th{font-family:'JetBrains Mono',monospace;font-size:0.52rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--faint);padding:4px 8px 6px;text-align:left;border-bottom:1px solid var(--border)}
-.sets-table td{padding:6px 8px;font-family:'JetBrains Mono',monospace;font-size:0.82rem;color:var(--text);border-bottom:1px solid var(--s2)}
-.sets-table tr:last-child td{border-bottom:none}
-.set-del-btn{background:none;border:none;color:var(--faint);cursor:pointer;font-size:0.9rem;padding:0;transition:color 0.15s}
-.set-del-btn:hover{color:var(--red)}
-.set-num{color:var(--muted);font-size:0.72rem}
-.set-weight{color:var(--g2);font-weight:500}
-.set-reps{color:var(--text)}
-
 </style>
 </head>
 <body>
@@ -389,28 +286,15 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'O
 
 <!-- APP -->
 <div id="appScreen">
-  <!-- Shared top nav -->
-  <div class="tnav" style="padding-left:16px;padding-right:16px">
-    <div class="tnav-logo" onclick="show('appScreen')">N<em>ourish</em></div>
-    <div class="tnav-r">
-      <button class="review-btn" onclick="showYesterdayReview()" title="Yesterday's review">📊</button>
-      <div class="clock-b" id="clockB">--:--:--</div>
-      <button class="prof-btn" id="profBtn" onclick="toggleDD()">?</button>
+  <div class="aw">
+    <div class="tnav">
+      <div class="tnav-logo" onclick="show('appScreen')">N<em>ourish</em></div>
+      <div class="tnav-r">
+        <button class="review-btn" onclick="showYesterdayReview()" title="Yesterday's review">📊</button>
+        <div class="clock-b" id="clockB">--:--:--</div>
+        <button class="prof-btn" id="profBtn" onclick="toggleDD()">?</button>
+      </div>
     </div>
-  </div>
-
-  <!-- Page tabs -->
-  <div class="page-tabs">
-    <button class="page-tab active" id="tabEx" onclick="switchPage('exercise')">🏋 Exercise</button>
-    <button class="page-tab" id="tabNu" onclick="switchPage('nutrition')">🥗 Nutrition</button>
-  </div>
-
-  <!-- Two-page swipe container -->
-  <div class="page-wrap on-exercise" id="pageWrap">
-
-    <!-- PAGE 1: EXERCISE -->
-    <div class="page" id="exPage">
-      <div class="ex-wrap">
 
     <!-- MORNING CARD -->
     <div class="morning-card hidden" id="morningCard">
@@ -485,7 +369,7 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'O
 <div class="toast" id="toast"></div>
 
 <script>
-const SUPABASE_URL = 'https://garsdjqrsvzodyyfprao.supabase.co';
+const SUPABASE_URL = 'https://garsdjqrsvzodyyfprao.supabase.co/rest/v1/';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdhcnNkanFyc3Z6b2R5eWZwcmFvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA5MDAxNTIsImV4cCI6MjA5NjQ3NjE1Mn0.1LJYYjQtzyoG-6cd9yStPB2gpzs9UsN-QfrJXQWEsC4';
 </script>
 
