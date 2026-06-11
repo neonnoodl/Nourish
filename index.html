@@ -343,6 +343,12 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'O
 .rpt-list-btn{font-family:'JetBrains Mono',monospace;font-size:0.62rem;padding:6px 12px;border-radius:100px;border:1px solid var(--border2);background:none;color:var(--muted);cursor:pointer;transition:all 0.15s}
 .rpt-list-btn:hover{border-color:var(--g2);color:var(--g)}
 </style>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1f5a44">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Nourish">
+<link rel="apple-touch-icon" href="icon-192.png">
 </head>
 <body>
 
@@ -1359,6 +1365,32 @@ async function downloadReport(){
     if(ev==='SIGNED_IN'&&session?.user) await onLogin(session.user);
   });
 })();
+</script>
+
+<!-- PWA INSTALL BANNER -->
+<div id="installBanner" style="display:none;position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:999;background:#1f5a44;color:#fff;border-radius:16px;padding:14px 20px;box-shadow:0 8px 24px rgba(0,0,0,0.18);display:none;align-items:center;gap:12px;max-width:340px;width:90%;font-family:'Outfit',sans-serif;animation:fadeUp 0.4s cubic-bezier(0.34,1.56,0.64,1)">
+  <span style="font-size:1.5rem">📲</span>
+  <div style="flex:1"><div style="font-weight:600;font-size:0.9rem">Install Nourish</div><div style="font-size:0.75rem;opacity:0.8">Add to home screen for the best experience</div></div>
+  <button onclick="doInstall()" style="background:#fff;color:#1f5a44;border:none;border-radius:10px;padding:8px 14px;font-family:'Outfit',sans-serif;font-weight:600;font-size:0.82rem;cursor:pointer;white-space:nowrap">Install</button>
+  <button onclick="document.getElementById('installBanner').style.display='none'" style="background:none;border:none;color:rgba(255,255,255,0.7);font-size:1.2rem;cursor:pointer;line-height:1;padding:0">×</button>
+</div>
+
+<script>
+let deferredPrompt=null;
+window.addEventListener('beforeinstallprompt',e=>{
+  e.preventDefault();
+  deferredPrompt=e;
+  const b=document.getElementById('installBanner');
+  b.style.display='flex';
+  setTimeout(()=>b.style.display='none', 12000);
+});
+function doInstall(){
+  if(!deferredPrompt)return;
+  deferredPrompt.prompt();
+  deferredPrompt.userChoice.then(()=>{deferredPrompt=null;document.getElementById('installBanner').style.display='none';});
+}
+window.addEventListener('appinstalled',()=>{document.getElementById('installBanner').style.display='none';});
+if('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');
 </script>
 </body>
 </html>
