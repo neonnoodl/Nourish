@@ -1304,7 +1304,7 @@ function showReportModal(report, isNew=false){
   let heatCells='';
   for(let i=0;i<startDow;i++) heatCells+=`<div></div>`;
   dailyTotals.forEach(d=>{
-    heatCells+=`<div class="rpt-hm-day${d.logged?' logged':''}" title="Day ${d.day}${d.logged?': logged':'': ': missed'}"></div>`;
+    heatCells+=`<div class="rpt-hm-day${d.logged?' logged':''}" title="Day ${d.day}${d.logged?': logged':': missed'}"></div>`;
   });
   // goal bars
   let goalBarsHTML='';
