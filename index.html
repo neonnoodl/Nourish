@@ -102,7 +102,6 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'O
 .morning-card{background:linear-gradient(135deg,#e8f5ef 0%,#eef2fb 100%);border:1px solid rgba(31,90,68,0.15);border-radius:20px;padding:22px;margin-bottom:22px;position:relative;animation:fadeUp 0.5s cubic-bezier(0.34,1.56,0.64,1)}
 .mc-label{font-family:'JetBrains Mono',monospace;font-size:0.56rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--g2);margin-bottom:8px}
 .mc-msg{font-family:'Outfit',sans-serif;font-size:0.95rem;color:var(--text);line-height:1.5;margin-bottom:16px}
-.mc-chart{height:160px;position:relative}
 .mc-dismiss{position:absolute;top:14px;right:14px;background:none;border:none;color:var(--faint);cursor:pointer;font-size:1.1rem;transition:color 0.15s;line-height:1}
 .mc-dismiss:hover{color:var(--muted)}
 
@@ -232,6 +231,117 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'O
   .tnav{padding:12px 0 10px}
   .num-fields{gap:6px}
 }
+
+/* PAGE TABS */
+.page-tabs{display:flex;background:var(--s2);border-radius:12px;padding:3px;margin-bottom:20px}
+.page-tab{flex:1;padding:9px;border:none;background:none;border-radius:9px;color:var(--muted);font-family:'Outfit',sans-serif;font-size:0.85rem;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:5px}
+.page-tab.active{background:#fff;color:var(--text);box-shadow:0 1px 4px rgba(0,0,0,0.08)}
+
+/* SWIPE CONTAINER */
+.pages-wrap{overflow:hidden;position:relative}
+.pages-inner{display:flex;transition:transform 0.32s cubic-bezier(0.4,0,0.2,1);will-change:transform}
+.page-panel{flex:0 0 100%;min-width:0}
+
+/* EXERCISE PAGE */
+.ex-section{margin-bottom:22px}
+.ex-add-panel{background:#fff;border:1px solid var(--border);border-radius:18px;padding:18px;margin-bottom:18px}
+.ex-add-panel .add-panel-label{margin-bottom:10px}
+.ex-row{display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap}
+.ex-fields{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.ex-nf{display:flex;flex-direction:column;gap:4px;flex:1;min-width:70px}
+.ex-nf label{font-family:'JetBrains Mono',monospace;font-size:0.54rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--faint)}
+.ex-list{display:flex;flex-direction:column;gap:7px}
+.ex-item{background:#fff;border:1px solid var(--border);border-radius:13px;padding:13px 14px;display:flex;align-items:flex-start;gap:12px;animation:si 0.22s cubic-bezier(0.34,1.56,0.64,1);position:relative;overflow:hidden}
+.ex-item::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:#5555aa;opacity:1}
+.ex-info{flex:1;min-width:0}
+.ex-name{font-size:0.9rem;font-weight:500}
+.ex-tags{display:flex;gap:6px;margin-top:5px;flex-wrap:wrap}
+.ex-tag{font-family:'JetBrains Mono',monospace;font-size:0.6rem;padding:3px 8px;border-radius:100px;background:rgba(100,100,200,0.06);color:#5555aa;border:1px solid rgba(100,100,200,0.2)}
+.ex-tag.kcal{background:rgba(192,57,43,0.06);color:var(--red);border-color:rgba(192,57,43,0.2)}
+.ex-tag.dur{background:rgba(31,90,68,0.06);color:var(--g2);border-color:rgba(31,90,68,0.2)}
+.ex-right{display:flex;flex-direction:column;align-items:flex-end;gap:3px;flex-shrink:0}
+.ex-summary-row{display:flex;gap:10px;overflow-x:auto;padding-bottom:4px;margin-bottom:22px;scrollbar-width:none}
+.ex-summary-row::-webkit-scrollbar{display:none}
+.ex-summary-pill{flex-shrink:0;min-width:110px;background:#fff;border:1px solid var(--border);border-radius:14px;padding:14px 15px;position:relative;overflow:hidden}
+.ex-summary-pill .gp-bar{background:#5555aa}
+.ex-type-select{width:100%;background:#fff;border:1px solid var(--border2);border-radius:10px;padding:11px 14px;color:var(--text);font-family:'Outfit',sans-serif;font-size:0.88rem;outline:none;transition:border-color 0.2s;appearance:none;-webkit-appearance:none;cursor:pointer}
+.ex-type-select:focus{border-color:#5555aa}
+
+/* REST TIMER */
+.rest-timer-wrap{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.rest-timer-btn{
+  flex:1;padding:14px 16px;border:none;border-radius:14px;cursor:pointer;
+  background:linear-gradient(145deg,#7c6fc4,#5555aa,#3d3d88);
+  box-shadow:0 6px 16px rgba(85,85,170,0.35),0 2px 4px rgba(85,85,170,0.2),inset 0 1px 0 rgba(255,255,255,0.18);
+  color:#fff;font-family:'Outfit',sans-serif;font-weight:600;
+  display:flex;flex-direction:column;align-items:center;gap:2px;
+  transition:transform 0.12s,box-shadow 0.12s;
+  position:relative;overflow:hidden;
+}
+.rest-timer-btn::after{content:'';position:absolute;inset:0;border-radius:14px;background:linear-gradient(180deg,rgba(255,255,255,0.12) 0%,transparent 60%);pointer-events:none}
+.rest-timer-btn:active{transform:translateY(2px);box-shadow:0 2px 8px rgba(85,85,170,0.3),inset 0 1px 0 rgba(255,255,255,0.1)}
+.rest-timer-btn.running{background:linear-gradient(145deg,#c0392b,#922b21);box-shadow:0 6px 16px rgba(192,57,43,0.35),0 2px 4px rgba(192,57,43,0.2),inset 0 1px 0 rgba(255,255,255,0.18)}
+.rest-timer-btn.done{background:linear-gradient(145deg,#27ae60,#1e8449);box-shadow:0 6px 16px rgba(39,174,96,0.35),0 2px 4px rgba(39,174,96,0.2),inset 0 1px 0 rgba(255,255,255,0.18);animation:rtPulse 0.5s ease}
+@keyframes rtPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
+.rt-label{font-family:'JetBrains Mono',monospace;font-size:0.56rem;letter-spacing:0.12em;text-transform:uppercase;opacity:0.75}
+.rt-time{font-family:'JetBrains Mono',monospace;font-size:1.4rem;font-weight:500;letter-spacing:0.04em}
+.rt-edit{width:52px;background:#fff;border:1px solid var(--border2);border-radius:10px;padding:8px 6px;color:#5555aa;font-family:'JetBrains Mono',monospace;font-size:0.85rem;text-align:center;outline:none;transition:border-color 0.2s}
+.rt-edit:focus{border-color:#5555aa}
+.rt-unit{font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:var(--muted)}
+.nutrition-panel-wrap{background:#fff;border:1px solid var(--border);border-radius:18px;padding:18px;margin-bottom:18px}
+.nutrition-panel-wrap .add-panel{background:var(--s2);border:none;padding:0;margin-bottom:14px}
+
+/* MACRO AI FETCH */
+.add-row{position:relative}
+.qty-wrap{display:flex;flex-direction:column;gap:4px;flex-shrink:0;width:90px}
+.qty-wrap label{font-family:'JetBrains Mono',monospace;font-size:0.54rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--faint)}
+.qty-input{width:100%;background:#fff;border:1px solid var(--border2);border-radius:10px;padding:10px 8px;color:var(--g2);font-family:'JetBrains Mono',monospace;font-size:0.88rem;text-align:center;outline:none;transition:border-color 0.2s}
+.qty-input:focus{border-color:var(--g2)}
+.qty-input::placeholder{color:var(--faint)}
+
+/* DAY CHART */
+.day-chart-card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:16px;margin-bottom:22px}
+
+/* REPORT MODAL */
+.rpt-modal{padding:0;overflow:hidden;border-radius:24px;max-width:460px;position:relative}
+.rpt-close-btn{position:absolute;top:14px;right:16px;background:none;border:none;font-size:1.4rem;color:rgba(255,255,255,0.7);cursor:pointer;z-index:10;line-height:1}
+.rpt-close-btn:hover{color:#fff}
+.rpt-header{background:linear-gradient(135deg,#1f5a44 0%,#2d6a8a 60%,#4a3a7a 100%);padding:32px 28px 24px;position:relative;overflow:hidden}
+.rpt-header::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
+.rpt-logo{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:300;color:rgba(255,255,255,0.6);letter-spacing:0.08em;margin-bottom:6px}
+.rpt-month{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:#fff;letter-spacing:-0.02em;margin-bottom:4px}
+.rpt-month em{font-style:italic;color:rgba(255,255,255,0.8)}
+.rpt-sub{font-family:'JetBrains Mono',monospace;font-size:0.58rem;color:rgba(255,255,255,0.5);letter-spacing:0.1em;text-transform:uppercase}
+.rpt-stats-row{display:flex;gap:1px;background:rgba(255,255,255,0.1);margin-top:20px;border-radius:12px;overflow:hidden}
+.rpt-stat{flex:1;padding:14px 10px;text-align:center;background:rgba(0,0,0,0.15)}
+.rpt-stat-val{font-family:'JetBrains Mono',monospace;font-size:1.1rem;color:#fff;font-weight:500}
+.rpt-stat-lbl{font-family:'JetBrains Mono',monospace;font-size:0.48rem;color:rgba(255,255,255,0.5);letter-spacing:0.08em;text-transform:uppercase;margin-top:2px}
+.rpt-body{padding:24px 28px}
+.rpt-section{margin-bottom:20px}
+.rpt-section-title{font-family:'JetBrains Mono',monospace;font-size:0.56rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--faint);margin-bottom:10px}
+.rpt-msg{font-family:'Outfit',sans-serif;font-size:0.92rem;color:var(--text);line-height:1.65;background:var(--s2);border-radius:14px;padding:16px}
+.rpt-msg strong{color:var(--g2)}
+.rpt-heatmap{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:6px}
+.rpt-hm-day{aspect-ratio:1;border-radius:4px;background:var(--s3);position:relative;cursor:default}
+.rpt-hm-day.logged{background:var(--g2);opacity:0.85}
+.rpt-hm-day.today{outline:2px solid var(--g2)}
+.rpt-hm-labels{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:10px}
+.rpt-hm-lbl{font-family:'JetBrains Mono',monospace;font-size:0.48rem;color:var(--faint);text-align:center;text-transform:uppercase}
+.rpt-chart-wrap{height:130px;position:relative}
+.rpt-goal-bars{display:flex;flex-direction:column;gap:8px}
+.rpt-goal-bar-row{display:flex;align-items:center;gap:8px}
+.rpt-goal-bar-lbl{font-family:'JetBrains Mono',monospace;font-size:0.58rem;color:var(--muted);width:60px;text-align:right;flex-shrink:0}
+.rpt-goal-bar-track{flex:1;height:8px;background:var(--s3);border-radius:100px;overflow:hidden}
+.rpt-goal-bar-fill{height:100%;border-radius:100px;background:var(--g2);transition:width 0.8s cubic-bezier(0.34,1.56,0.64,1)}
+.rpt-goal-bar-pct{font-family:'JetBrains Mono',monospace;font-size:0.58rem;color:var(--muted);width:34px}
+.rpt-dl-btn{width:100%;padding:13px;background:linear-gradient(135deg,#1f5a44,#2d6a8a);border:none;border-radius:12px;color:#fff;font-family:'Outfit',sans-serif;font-weight:600;font-size:0.9rem;cursor:pointer;transition:all 0.15s;margin-top:4px;display:flex;align-items:center;justify-content:center;gap:8px}
+.rpt-dl-btn:hover{opacity:0.9;transform:translateY(-1px)}
+.rpt-list-item{background:#fff;border:1px solid var(--border);border-radius:14px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between}
+.rpt-list-item-left .rpt-list-month{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--text)}
+.rpt-list-item-left .rpt-list-sub{font-family:'JetBrains Mono',monospace;font-size:0.58rem;color:var(--faint);margin-top:2px}
+.rpt-list-item-btns{display:flex;gap:8px}
+.rpt-list-btn{font-family:'JetBrains Mono',monospace;font-size:0.62rem;padding:6px 12px;border-radius:100px;border:1px solid var(--border2);background:none;color:var(--muted);cursor:pointer;transition:all 0.15s}
+.rpt-list-btn:hover{border-color:var(--g2);color:var(--g)}
 </style>
 </head>
 <body>
@@ -299,9 +409,8 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'O
     <!-- MORNING CARD -->
     <div class="morning-card hidden" id="morningCard">
       <button class="mc-dismiss" onclick="dismissMorning()">×</button>
-      <div class="mc-label">☀ Good morning — yesterday's recap</div>
-      <div class="mc-msg" id="mcMsg">Loading…</div>
-      <div class="mc-chart"><canvas id="mcChart"></canvas></div>
+      <div class="mc-label" id="mcLabel">☀ Good morning</div>
+      <div class="mc-msg" id="mcMsg"></div>
     </div>
 
     <div class="dh">
@@ -312,33 +421,108 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'O
       <button class="eg-btn" onclick="openGoalModal()">✦ Goals</button>
     </div>
 
-    <div class="sec-lbl" style="margin-top:14px">Navigate</div>
-    <div class="cal-strip" id="calStrip"></div>
-
-    <div class="sec-lbl">Progress</div>
-    <div class="goals-row" id="goalsRow"></div>
-
-    <div class="lock-banner hidden" id="lockBanner">🔒 This day is permanently locked — data cannot be edited after 24 hours.</div>
-
-    <div class="add-panel" id="addPanel">
-      <div class="add-panel-label">Log a food item</div>
-      <div class="add-row">
-        <input class="ni" id="nameIn" type="text" placeholder="Food name (e.g. Chicken Breast)">
-      </div>
-      <div class="num-fields">
-        <div class="nf-wrap"><label>Calories</label><input class="ai" id="calIn" type="number" placeholder="kcal" min="0"></div>
-        <div class="nf-wrap"><label>Protein</label><input class="ai" id="proIn" type="number" placeholder="g" min="0"></div>
-        <div class="nf-wrap"><label>Carbs</label><input class="ai" id="carbIn" type="number" placeholder="g" min="0"></div>
-        <div class="nf-wrap"><label>Fats</label><input class="ai" id="fatIn" type="number" placeholder="g" min="0"></div>
-      </div>
-      <button class="add-btn-el" onclick="addItem()">+ Add to Log</button>
+    <!-- PAGE TABS -->
+    <div class="page-tabs" role="tablist">
+      <button class="page-tab active" id="tabEx" onclick="switchPage(0)" role="tab">&#127947; Exercise</button>
+      <button class="page-tab" id="tabNu" onclick="switchPage(1)" role="tab">&#x1F957; Nutrition</button>
     </div>
 
-    <div class="list-hdr">
-      <div class="list-lbl">Today's Log</div>
-      <button class="clr-btn" onclick="clearChecked()">clear checked</button>
+    <!-- SWIPEABLE PAGES -->
+    <div class="pages-wrap" id="pagesWrap">
+      <div class="pages-inner" id="pagesInner">
+
+        <!-- EXERCISE PAGE -->
+        <div class="page-panel" id="pageExercise">
+          <div class="sec-lbl" style="margin-top:14px">Navigate</div>
+          <div class="cal-strip" id="calStripEx"></div>
+
+          <div class="sec-lbl">Summary</div>
+          <div class="ex-summary-row" id="exSummaryRow"></div>
+
+          <div class="ex-add-panel">
+            <div class="add-panel-label">Log an exercise</div>
+            <div class="ex-row">
+              <input class="ni" id="exNameIn" type="text" placeholder="Exercise (e.g. Running, Bench Press)">
+            </div>
+            <div class="ex-row">
+              <select class="ex-type-select" id="exTypeIn">
+                <option value="">-- Type (optional) --</option>
+                <option value="Cardio">Cardio</option>
+                <option value="Strength">Strength</option>
+                <option value="Flexibility">Flexibility</option>
+                <option value="HIIT">HIIT</option>
+                <option value="Sports">Sports</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="ex-fields">
+              <div class="ex-nf"><label>Sets</label><input class="ai" id="exSetsIn" type="number" placeholder="--" min="0"></div>
+              <div class="ex-nf"><label>Reps</label><input class="ai" id="exRepsIn" type="number" placeholder="--" min="0"></div>
+              <div class="ex-nf"><label>Weight (kg)</label><input class="ai" id="exWeightIn" type="number" placeholder="kg" min="0" step="0.5"></div>
+            </div>
+            <div class="rest-timer-wrap">
+              <button class="rest-timer-btn" id="restTimerBtn" onclick="tapRestTimer()">
+                <span class="rt-label" id="rtLabel">Rest Timer</span>
+                <span class="rt-time" id="rtTime">60s</span>
+              </button>
+              <input class="rt-edit" id="rtEdit" type="number" min="5" max="600" value="60" title="Edit rest duration">
+              <span class="rt-unit">s</span>
+            </div>
+            <button class="add-btn-el" onclick="addExercise()" style="background:#5555aa">+ Add Exercise</button>
+          </div>
+
+          <div class="list-hdr">
+            <div class="list-lbl">Exercise Log</div>
+            <button class="clr-btn" onclick="clearExercises()">clear all</button>
+          </div>
+          <div class="ex-list" id="exList"></div>
+        </div>
+
+        <!-- NUTRITION PAGE -->
+        <div class="page-panel" id="pageNutrition">
+          <div class="sec-lbl" style="margin-top:14px">Navigate</div>
+          <div class="cal-strip" id="calStrip"></div>
+
+          <div class="sec-lbl">Progress</div>
+          <div class="goals-row" id="goalsRow"></div>
+
+          <div class="day-chart-wrap" id="dayChartWrap" style="display:none">
+            <div class="sec-lbl" style="margin-bottom:8px">Day Overview</div>
+            <div class="day-chart-card"><canvas id="dayChart" height="140"></canvas></div>
+          </div>
+
+          <div class="lock-banner hidden" id="lockBanner">&#128274; This day is permanently locked &mdash; data cannot be edited after 24 hours.</div>
+
+          <div class="nutrition-panel-wrap">
+          <div class="add-panel" id="addPanel">
+            <div class="add-panel-label">Log a food item</div>
+            <div class="add-row">
+              <input class="ni" id="nameIn" type="text" placeholder="Food name (e.g. Chicken Breast)">
+              <div class="qty-wrap">
+                <label>Qty / Weight</label>
+                <input class="qty-input" id="qtyIn" type="text" placeholder="e.g. 100g">
+              </div>
+            </div>
+            <div class="num-fields">
+              <div class="nf-wrap"><label>Calories</label><input class="ai" id="calIn" type="number" placeholder="kcal" min="0"></div>
+              <div class="nf-wrap"><label>Protein</label><input class="ai" id="proIn" type="number" placeholder="g" min="0"></div>
+              <div class="nf-wrap"><label>Carbs</label><input class="ai" id="carbIn" type="number" placeholder="g" min="0"></div>
+              <div class="nf-wrap"><label>Fats</label><input class="ai" id="fatIn" type="number" placeholder="g" min="0"></div>
+            </div>
+            <button class="add-btn-el" onclick="addItem()">+ Add to Log</button>
+          </div>
+
+          <div class="list-hdr">
+            <div class="list-lbl">Today's Log</div>
+            <button class="clr-btn" onclick="clearChecked()">clear checked</button>
+          </div>
+          <div class="food-list" id="foodList"></div>
+          </div><!-- /nutrition-panel-wrap -->
+        </div>
+
+      </div>
     </div>
-    <div class="food-list" id="foodList"></div>
+
   </div>
 </div>
 
@@ -349,6 +533,7 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'O
     <div class="pdu-email" id="pdEmail">—</div>
   </div>
   <button class="pd-btn" onclick="openGoalModal();closeDD()">⚙ Edit Goals</button>
+  <button class="pd-btn" onclick="openReportsModal();closeDD()">📊 Monthly Reports</button>
   <button class="pd-btn danger" onclick="doLogout()">↩ Sign Out</button>
 </div>
 
@@ -366,6 +551,28 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'O
   </div>
 </div>
 
+
+<!-- MONTHLY REPORT MODAL -->
+<div class="overlay" id="reportOverlay" onclick="if(event.target===this)closeReportModal()">
+  <div class="modal rpt-modal" id="reportModal">
+    <div class="rpt-close-btn" onclick="closeReportModal()">×</div>
+    <div id="reportContent">
+      <!-- filled dynamically -->
+    </div>
+    <button class="m-cancel" onclick="closeReportModal()" style="margin-top:12px">Close</button>
+  </div>
+</div>
+
+<!-- REPORTS LIST MODAL -->
+<div class="overlay" id="reportsListOverlay" onclick="if(event.target===this)closeReportsListModal()">
+  <div class="modal">
+    <div class="mh">Monthly Reports</div>
+    <div class="msub">Your saved progress logs.</div>
+    <div id="reportsList" style="display:flex;flex-direction:column;gap:10px;max-height:60vh;overflow-y:auto"></div>
+    <button class="m-cancel" onclick="closeReportsListModal()" style="margin-top:14px">Close</button>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script>
@@ -377,7 +584,7 @@ const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
 'use strict';
 const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-let user=null, goals=null, selDate=todayKey(), items=[], mcChart=null;
+let user=null, goals=null, selDate=todayKey(), items=[];
 let crIds={su:[],mo:[]};
 
 function todayKey(){const d=new Date();return `${d.getFullYear()}-${p2(d.getMonth()+1)}-${p2(d.getDate())}`}
@@ -493,77 +700,46 @@ async function initApp(){
   document.getElementById('pdEmail').textContent=user.email;
   document.getElementById('profBtn').textContent=name.charAt(0).toUpperCase();
   await checkMorning();
+  await checkMonthlyReport();
+  await loadSavedReports();
   buildCal();
   await loadItems();
+  await loadExercises();
 }
 
 // MORNING INSIGHT — no time restriction, always available
 async function checkMorning(){
-  const yd=new Date();yd.setDate(yd.getDate()-1);
-  const yk=`${yd.getFullYear()}-${p2(yd.getMonth()+1)}-${p2(yd.getDate())}`;
-  if(localStorage.getItem(`nm_${yk}`)) return;
-  const {data}=await sb.from('food_logs').select('*').eq('user_id',user.id).eq('log_date',yk);
-  if(!data?.length) return;
-  showMorning(yk,data);
+  const tk=todayKey();
+  if(localStorage.getItem('greet_'+tk)) return;
+  showMorning();
 }
 
-function showMorning(dk,rows){
+function showMorning(){
+  const hr=new Date().getHours();
+  const icon=hr<12?'☀':'☁';
+  const period=hr<12?'Good morning':hr<17?'Good afternoon':'Good evening';
+  const name=user?.user_metadata?.display_name||user?.email?.split('@')[0]||'there';
+  const lines=[
+    "Your goals are already set. All that's left is today.",
+    "Small consistent steps beat occasional perfection.",
+    "Log your meals, hit your targets, feel the difference.",
+    "Every entry counts. Keep the streak alive.",
+    "Nutrition tracked is progress made.",
+    "Today's a fresh page. Make it a good one.",
+  ];
+  const tip=lines[new Date().getDate()%lines.length];
+  document.getElementById('mcLabel').textContent=icon+' '+period+', '+name;
+  document.getElementById('mcMsg').textContent=tip;
   document.getElementById('morningCard').classList.remove('hidden');
-  const gs=allGoals();
-  // tally consumed per goal using the new column structure
-  const con={cal:0,pro:0,carb:0,fat:0};
-  rows.filter(r=>r.checked).forEach(r=>{
-    con.cal+=Number(r.calories||0);
-    con.pro+=Number(r.protein||0);
-    con.carb+=Number(r.carbs||0);
-    con.fat+=Number(r.fats||0);
-  });
-  // for custom goals we use a fallback of 0
-  const getConsumed = (g) => {
-    if(g.id==='cal') return con.cal;
-    if(g.id==='pro') return con.pro;
-    if(g.id==='carb') return con.carb;
-    if(g.id==='fat') return con.fat;
-    return 0;
-  };
-  const met=gs.filter(g=>getConsumed(g)>=g.target*0.9).length, tot=gs.length;
-  const pct=tot>0?Math.round((met/tot)*100):0;
-  const msg=pct>=90?`Incredible! You hit ${met}/${tot} goals yesterday. That's real discipline. `:
-    pct>=70?`Strong day — ${met}/${tot} goals reached. You're building momentum. `:
-    pct>=50?`Solid effort. ${met}/${tot} goals met. Small steps compound fast. `:
-    `Yesterday was a reset. ${met}/${tot} goals met. Today is a brand new start. `;
-  document.getElementById('mcMsg').textContent=msg;
-  if(mcChart) mcChart.destroy();
-  const ctx=document.getElementById('mcChart').getContext('2d');
-  mcChart=new Chart(ctx,{
-    type:'bar',
-    data:{
-      labels:gs.map(g=>g.name),
-      datasets:[
-        {label:'Goal',data:gs.map(g=>g.target),backgroundColor:'rgba(31,90,68,0.1)',borderColor:'rgba(31,90,68,0.3)',borderWidth:1,borderRadius:5},
-        {label:'Consumed',data:gs.map(g=>Math.round(getConsumed(g)*10)/10),backgroundColor:'rgba(31,90,68,0.6)',borderColor:'rgba(31,90,68,1)',borderWidth:1,borderRadius:5}
-      ]
-    },
-    options:{
-      responsive:true,maintainAspectRatio:false,
-      plugins:{legend:{labels:{color:'#444',font:{family:'Outfit',size:10},boxWidth:10}}},
-      scales:{
-        x:{ticks:{color:'#444',font:{size:9}},grid:{color:'rgba(0,0,0,0.05)'}},
-        y:{ticks:{color:'#444',font:{size:9}},grid:{color:'rgba(0,0,0,0.05)'}}
-      }
-    }
-  });
 }
 
 function dismissMorning(){
-  const yd=new Date();yd.setDate(yd.getDate()-1);
-  const yk=`${yd.getFullYear()}-${p2(yd.getMonth()+1)}-${p2(yd.getDate())}`;
-  localStorage.setItem(`nm_${yk}`,'1');
+  localStorage.setItem('greet_'+todayKey(),'1');
   document.getElementById('morningCard').classList.add('hidden');
 }
 // CALENDAR
-function buildCal(){
-  const strip=document.getElementById('calStrip');strip.innerHTML='';
+function buildCalStrip(stripId, onSelect){
+  const strip=document.getElementById(stripId);if(!strip)return;strip.innerHTML='';
   const today=new Date();
   for(let i=-14;i<=7;i++){
     const d=new Date(today);d.setDate(today.getDate()+i);
@@ -572,10 +748,14 @@ function buildCal(){
     const el=document.createElement('div');
     el.className='cal-day'+(k===selDate?' active':'')+(lk?' locked':'');
     el.innerHTML=`<span class="cal-dow">${DW[d.getDay()]}</span><span class="cal-dom">${d.getDate()}</span><span class="cal-dot"></span>`;
-    el.onclick=async()=>{selDate=k;buildCal();updDH();await loadItems()};
+    el.onclick=async()=>{selDate=k;buildCal();updDH();await onSelect()};
     strip.appendChild(el);
     if(k===selDate) setTimeout(()=>el.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'}),60);
   }
+}
+function buildCal(){
+  buildCalStrip('calStrip', loadItems);
+  buildCalStrip('calStripEx', loadExercises);
 }
 
 function updDH(){
@@ -606,6 +786,7 @@ function renderGoals(){
     totals.carb+=Number(i.carbs||0);
     totals.fat+=Number(i.fats||0);
   });
+  const chartTotals={cal:totals.cal,pro:totals.pro,carb:totals.carb,fat:totals.fat};
   allGoals().forEach(g=>{
     let consumed=0;
     if(g.id==='cal') consumed=totals.cal;
@@ -617,6 +798,7 @@ function renderGoals(){
     pill.innerHTML=`<div class="gp-lbl">${esc(g.name)}</div><div class="gp-val">${consumed%1===0?consumed:consumed.toFixed(1)}<span style="font-size:0.6rem;color:var(--faint);margin-left:2px">${esc(g.unit)}</span></div><div class="gp-tgt">/ ${g.target} ${esc(g.unit)}</div><div class="gp-pct">${Math.round(pct*100)}%</div><div class="gp-bar" style="width:${pct*100}%"></div>`;
     row.appendChild(pill);
   });
+  renderDayChart(chartTotals);
 }
 
 // ADD ITEM — saves to new columns
@@ -639,6 +821,7 @@ async function addItem(){
   if(error){toast('Error saving: '+error.message,'err');console.error(error);return}
   items.unshift(data);
   document.getElementById('nameIn').value='';
+  document.getElementById('qtyIn').value='';
   document.getElementById('calIn').value='';
   document.getElementById('proIn').value='';
   document.getElementById('carbIn').value='';
@@ -750,8 +933,7 @@ async function showYesterdayReview(){
   const yk=`${yd.getFullYear()}-${p2(yd.getMonth()+1)}-${p2(yd.getDate())}`;
   localStorage.removeItem(`nm_${yk}`);
   const {data}=await sb.from('food_logs').select('*').eq('user_id',user.id).eq('log_date',yk);
-  if(!data?.length){toast('No data logged yesterday','err');return}
-  showMorning(yk,data);
+  document.getElementById('morningCard').classList.remove('hidden');
   document.getElementById('morningCard').scrollIntoView({behavior:'smooth'});
 }
 
@@ -759,9 +941,413 @@ async function showYesterdayReview(){
 document.addEventListener('keydown',e=>{
   if(e.key==='Enter'&&document.getElementById('appScreen').classList.contains('active')){
     const a=document.activeElement;
-    if(['nameIn','calIn','proIn','carbIn','fatIn'].includes(a.id)) addItem();
+    if(['nameIn','qtyIn','calIn','proIn','carbIn','fatIn'].includes(a.id)) addItem();
   }
 });
+
+// ── PAGE SWITCHER + SWIPE ──────────────────────────────────────────
+let curPage = 0;
+function switchPage(idx){
+  curPage = idx;
+  document.getElementById('pagesInner').style.transform = `translateX(${-idx*100}%)`;
+  document.querySelectorAll('.page-tab').forEach((t,i)=>t.classList.toggle('active',i===idx));
+}
+(function initSwipe(){
+  const wrap = document.getElementById('pagesWrap');
+  let sx=0, sy=0, dragging=false;
+  wrap.addEventListener('touchstart',e=>{sx=e.touches[0].clientX;sy=e.touches[0].clientY;dragging=true},{passive:true});
+  wrap.addEventListener('touchmove',e=>{
+    if(!dragging)return;
+    const dx=e.touches[0].clientX-sx, dy=e.touches[0].clientY-sy;
+    if(Math.abs(dx)>Math.abs(dy)&&Math.abs(dx)>8) e.preventDefault();
+  },{passive:false});
+  wrap.addEventListener('touchend',e=>{
+    if(!dragging)return; dragging=false;
+    const dx=e.changedTouches[0].clientX-sx;
+    if(dx < -40 && curPage===0) switchPage(1);
+    else if(dx > 40 && curPage===1) switchPage(0);
+  },{passive:true});
+})();
+
+// ── EXERCISE DATA ─────────────────────────────────────────────────
+let exItems = [];
+
+async function loadExercises(){
+  const {data} = await sb.from('exercise_logs').select('*').eq('user_id',user.id).eq('log_date',selDate).order('created_at',{ascending:false});
+  exItems = data||[];
+  renderExSummary();
+  renderExList();
+}
+
+async function addExercise(){
+  const name = document.getElementById('exNameIn').value.trim();
+  if(!name){toast('Enter an exercise name','err');return}
+  const type     = document.getElementById('exTypeIn').value||null;
+  const sets     = parseInt(document.getElementById('exSetsIn').value)||null;
+  const reps     = parseInt(document.getElementById('exRepsIn').value)||null;
+  const weight   = parseFloat(document.getElementById('exWeightIn').value)||null;
+  const now = new Date();
+  const {data,error} = await sb.from('exercise_logs').insert({
+    user_id:user.id, log_date:selDate, name, type,
+    sets, reps, weight_kg:weight,
+    log_time:`${p2(now.getHours())}:${p2(now.getMinutes())}`
+  }).select().single();
+  if(error){
+    // table might not exist yet — store locally
+    if(error.code==='42P01'||error.message?.includes('relation')){
+      toast('Create exercise_logs table in Supabase to persist data','err');
+      exItems.unshift({id:uid(),name,type,sets,reps,weight_kg:weight,log_time:`${p2(now.getHours())}:${p2(now.getMinutes())}`});
+    } else {
+      toast('Error: '+error.message,'err');return;
+    }
+  } else {
+    exItems.unshift(data);
+  }
+  ['exNameIn','exSetsIn','exRepsIn','exWeightIn'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('exTypeIn').value='';
+  document.getElementById('exNameIn').focus();
+  renderExSummary(); renderExList();
+  toast(`${name} logged ✓`,'ok');
+}
+
+async function delExercise(id){
+  await sb.from('exercise_logs').delete().eq('id',id).eq('user_id',user.id);
+  exItems = exItems.filter(e=>e.id!==id);
+  renderExSummary(); renderExList();
+}
+
+async function clearExercises(){
+  const ids = exItems.map(e=>e.id);
+  if(!ids.length) return;
+  await sb.from('exercise_logs').delete().in('id',ids).eq('user_id',user.id);
+  exItems=[];
+  renderExSummary(); renderExList();
+  toast(`${ids.length} exercise${ids.length>1?'s':''} cleared`,'ok');
+}
+
+function renderExSummary(){
+  const row = document.getElementById('exSummaryRow'); row.innerHTML='';
+  const totalSets = exItems.reduce((s,e)=>s+(e.sets||0),0);
+  [
+    {label:'Exercises',val:exItems.length||'—',sub:'logged'},
+    {label:'Sets',val:totalSets||'—',sub:'total'},
+  ].forEach(d=>{
+    const pill=document.createElement('div');
+    pill.className='ex-summary-pill';
+    pill.innerHTML=`<div class="gp-lbl">${d.label}</div><div class="gp-val" style="color:#5555aa">${d.val}</div><div class="gp-tgt">${d.sub}</div>`;
+    row.appendChild(pill);
+  });
+}
+
+function renderExList(){
+  const list = document.getElementById('exList'); list.innerHTML='';
+  if(!exItems.length){
+    list.innerHTML=`<div class="empty-st"><div class="empty-icon">🏃</div><p>No exercises logged yet — get moving!</p></div>`;return;
+  }
+  exItems.forEach(e=>{
+    const el=document.createElement('div'); el.className='ex-item';
+    const tags=[
+      e.type?`<span class="ex-tag">${esc(e.type)}</span>`:'',
+      e.sets&&e.reps?`<span class="ex-tag">${e.sets}×${e.reps}</span>`:(e.sets?`<span class="ex-tag">${e.sets} sets</span>`:''),
+      e.weight_kg?`<span class="ex-tag">${e.weight_kg} kg</span>`:'',
+    ].join('');
+    el.innerHTML=`
+      <div class="ex-info">
+        <div class="ex-name">${esc(e.name)}</div>
+        <div class="ex-tags">${tags}</div>
+      </div>
+      <div class="ex-right">
+        <div class="ftime">${e.log_time||''}</div>
+        <button class="del-btn" onclick="delExercise('${e.id}')">×</button>
+      </div>`;
+    list.appendChild(el);
+  });
+}
+
+// ── REST TIMER ───────────────────────────────────────────────────
+let rtInterval=null, rtRemaining=0, rtDuration=60;
+function tapRestTimer(){
+  const btn=document.getElementById('restTimerBtn');
+  const editEl=document.getElementById('rtEdit');
+  if(rtInterval){
+    // cancel
+    clearInterval(rtInterval);rtInterval=null;
+    rtRemaining=0;
+    btn.className='rest-timer-btn';
+    document.getElementById('rtTime').textContent=rtDuration+'s';
+    document.getElementById('rtLabel').textContent='Rest Timer';
+    return;
+  }
+  const custom=parseInt(editEl.value)||60;
+  rtDuration=Math.max(5,Math.min(600,custom));
+  rtRemaining=rtDuration;
+  btn.className='rest-timer-btn running';
+  document.getElementById('rtLabel').textContent='Tap to cancel';
+  rtInterval=setInterval(()=>{
+    rtRemaining--;
+    document.getElementById('rtTime').textContent=rtRemaining+'s';
+    if(rtRemaining<=0){
+      clearInterval(rtInterval);rtInterval=null;
+      btn.className='rest-timer-btn done';
+      document.getElementById('rtTime').textContent='Go!';
+      document.getElementById('rtLabel').textContent='Rest complete';
+      toast('Rest over — next set!','ok');
+      setTimeout(()=>{
+        if(!rtInterval){
+          btn.className='rest-timer-btn';
+          document.getElementById('rtTime').textContent=rtDuration+'s';
+          document.getElementById('rtLabel').textContent='Rest Timer';
+        }
+      },2000);
+    }
+  },1000);
+}
+document.addEventListener('DOMContentLoaded',()=>{
+  const ed=document.getElementById('rtEdit');
+  if(ed) ed.addEventListener('change',()=>{
+    if(!rtInterval){
+      rtDuration=Math.max(5,Math.min(600,parseInt(ed.value)||60));
+      document.getElementById('rtTime').textContent=rtDuration+'s';
+    }
+  });
+});
+
+
+
+// ── DAY CHART ─────────────────────────────────────────────────────
+let dayChartInst = null;
+function renderDayChart(totals){
+  const gs = allGoals().filter(g=>['cal','pro','carb','fat'].includes(g.id));
+  const wrap = document.getElementById('dayChartWrap');
+  if(!gs.length){if(wrap)wrap.style.display='none';return;}
+  if(wrap) wrap.style.display='block';
+  const ctx = document.getElementById('dayChart').getContext('2d');
+  if(dayChartInst) dayChartInst.destroy();
+  const consumed = gs.map(g=>{
+    if(g.id==='cal') return Math.round(totals.cal);
+    if(g.id==='pro') return Math.round(totals.pro*10)/10;
+    if(g.id==='carb') return Math.round(totals.carb*10)/10;
+    if(g.id==='fat') return Math.round(totals.fat*10)/10;
+    return 0;
+  });
+  const targets = gs.map(g=>g.target);
+  dayChartInst = new Chart(ctx,{
+    type:'bar',
+    data:{
+      labels: gs.map(g=>g.name),
+      datasets:[
+        {label:'Goal',data:targets,backgroundColor:'rgba(31,90,68,0.1)',borderColor:'rgba(31,90,68,0.25)',borderWidth:1.5,borderRadius:6,borderSkipped:false},
+        {label:'Consumed',data:consumed,backgroundColor:consumed.map((v,i)=>v>=targets[i]*0.9?'rgba(31,90,68,0.75)':v>=targets[i]*0.6?'rgba(185,119,14,0.7)':'rgba(192,57,43,0.65)'),borderWidth:0,borderRadius:6,borderSkipped:false}
+      ]
+    },
+    options:{
+      responsive:true,maintainAspectRatio:false,
+      plugins:{
+        legend:{labels:{color:'#666',font:{family:'Outfit',size:10},boxWidth:10,padding:12}},
+        tooltip:{callbacks:{label:ctx=>`${ctx.dataset.label}: ${ctx.parsed.y}`}}
+      },
+      scales:{
+        x:{ticks:{color:'#888',font:{size:9,family:'JetBrains Mono'}},grid:{display:false}},
+        y:{ticks:{color:'#888',font:{size:9,family:'JetBrains Mono'}},grid:{color:'rgba(0,0,0,0.04)'}}
+      }
+    }
+  });
+}
+
+// ── MONTHLY REPORT ─────────────────────────────────────────────────
+let savedReports = [];
+
+async function checkMonthlyReport(){
+  const now = new Date();
+  if(now.getDate() !== 1) return; // only on 1st of month
+  const prevMonth = new Date(now.getFullYear(), now.getMonth()-1, 1);
+  const yr = prevMonth.getFullYear();
+  const mo = prevMonth.getMonth()+1;
+  const key = `rpt_shown_${yr}_${mo}`;
+  if(localStorage.getItem(key)) return;
+  const report = await buildMonthReport(yr, mo);
+  if(!report) return;
+  localStorage.setItem(key,'1');
+  // auto-save to Supabase
+  await saveReportToDB(report);
+  showReportModal(report, true);
+}
+
+async function buildMonthReport(yr, mo){
+  const startDate = `${yr}-${p2(mo)}-01`;
+  const daysInMonth = new Date(yr, mo, 0).getDate();
+  const endDate = `${yr}-${p2(mo)}-${p2(daysInMonth)}`;
+  const {data} = await sb.from('food_logs').select('*').eq('user_id',user.id).gte('log_date',startDate).lte('log_date',endDate);
+  if(!data?.length) return null;
+  // group by day
+  const byDay = {};
+  data.forEach(row=>{
+    if(!byDay[row.log_date]) byDay[row.log_date]=[];
+    byDay[row.log_date].push(row);
+  });
+  const loggedDays = Object.keys(byDay).length;
+  const missedDays = daysInMonth - loggedDays;
+  // compute per-day totals
+  const gs = allGoals().filter(g=>['cal','pro','carb','fat'].includes(g.id));
+  const dailyTotals = [];
+  const goalHitCounts = {};
+  gs.forEach(g=>goalHitCounts[g.id]=0);
+  for(let d=1;d<=daysInMonth;d++){
+    const k=`${yr}-${p2(mo)}-${p2(d)}`;
+    const rows=(byDay[k]||[]).filter(r=>r.checked);
+    const t={date:k,day:d,logged:!!byDay[k],cal:0,pro:0,carb:0,fat:0};
+    rows.forEach(r=>{t.cal+=Number(r.calories||0);t.pro+=Number(r.protein||0);t.carb+=Number(r.carbs||0);t.fat+=Number(r.fats||0)});
+    gs.forEach(g=>{
+      const v = g.id==='cal'?t.cal:g.id==='pro'?t.pro:g.id==='carb'?t.carb:t.fat;
+      if(byDay[k] && v>=g.target*0.9) goalHitCounts[g.id]++;
+    });
+    dailyTotals.push(t);
+  }
+  const avgGoalPct = gs.length ? Math.round(gs.reduce((s,g)=>{
+    const pct = goalHitCounts[g.id]/loggedDays*100;
+    return s+pct;
+  },0)/gs.length) : 0;
+  // find streaks
+  let maxStreak=0,curStreak=0;
+  dailyTotals.forEach(d=>{
+    if(d.logged){curStreak++;maxStreak=Math.max(maxStreak,curStreak);}
+    else curStreak=0;
+  });
+  // find inconsistency clusters (gaps >=3 days)
+  const gaps=[];
+  let gapStart=null,gapLen=0;
+  dailyTotals.forEach((d,i)=>{
+    if(!d.logged){if(!gapStart)gapStart=d.day;gapLen++;}
+    else{if(gapLen>=3)gaps.push({start:gapStart,len:gapLen});gapStart=null;gapLen=0;}
+  });
+  if(gapLen>=3) gaps.push({start:gapStart,len:gapLen});
+  return {yr,mo,daysInMonth,loggedDays,missedDays,avgGoalPct,maxStreak,goalHitCounts,gs,dailyTotals,gaps,savedAt:new Date().toISOString()};
+}
+
+async function saveReportToDB(report){
+  try{
+    const key=`${report.yr}-${p2(report.mo)}`;
+    await sb.from('monthly_reports').upsert({user_id:user.id,month_key:key,report_data:report},{onConflict:'user_id,month_key'});
+  }catch(e){console.log('Report save error (table may not exist):',e)}
+  savedReports = savedReports.filter(r=>!(r.yr===report.yr&&r.mo===report.mo));
+  savedReports.unshift(report);
+}
+
+async function loadSavedReports(){
+  try{
+    const {data}=await sb.from('monthly_reports').select('*').eq('user_id',user.id).order('month_key',{ascending:false}).limit(12);
+    if(data?.length) savedReports=data.map(r=>r.report_data);
+  }catch(e){console.log('Reports load error:',e)}
+}
+
+function monthName(mo){return['January','February','March','April','May','June','July','August','September','October','November','December'][mo-1]}
+
+function buildReportMessage(report){
+  const {loggedDays,missedDays,daysInMonth,avgGoalPct,maxStreak,gaps,mo,yr}=report;
+  const consistency=Math.round(loggedDays/daysInMonth*100);
+  let msg='';
+  if(consistency>=90){
+    const goalLine=avgGoalPct>=80?'And you crushed your goals while doing it. Genuinely impressive.':'Keep tightening those goal numbers and you will be unstoppable.';
+    msg='<strong>What a month.</strong> You showed up '+loggedDays+' out of '+daysInMonth+' days — that is elite consistency. '+goalLine;
+  } else if(consistency>=70){
+    const streakLine=maxStreak>7?('That '+maxStreak+'-day streak especially? That is momentum. '):'';
+    const gapLine=gaps.length?('A few quiet spells (around the '+gaps[0].start+(gaps[0].start===1?'st':gaps[0].start===2?'nd':gaps[0].start===3?'rd':'th')+') — life happens. Just do not let the gaps become the habit.'):'';
+    msg='<strong>Solid month overall.</strong> '+loggedDays+' days logged — you are clearly building a habit. '+streakLine+gapLine;
+  } else if(consistency>=50){
+    const gapLine=gaps.length>=2?'The mid-month stretch got quiet; that is usually where routines slip. One small fix: log even on bad days. A partial entry beats silence every time.':'The gaps are fixable. You know what to do.';
+    msg='<strong>You are halfway there.</strong> '+loggedDays+' days out of '+daysInMonth+' — the intention is clearly there, and that counts. '+gapLine;
+  } else {
+    msg='<strong>Rough month — and that is okay.</strong> '+loggedDays+' '+(loggedDays===1?'day':'days')+' logged, but here is the truth: you opened the app, which means you have not given up. '+missedDays+' missed days is not failure — it is feedback. Next month, just aim for 3 more days than this one. Small wins compound.';
+  }
+  return msg;
+}
+
+function showReportModal(report, isNew=false){
+  const {yr,mo,daysInMonth,loggedDays,missedDays,avgGoalPct,maxStreak,goalHitCounts,gs,dailyTotals,gaps}=report;
+  const mn=monthName(mo);
+  const content=document.getElementById('reportContent');
+  // heatmap
+  const startDow = new Date(yr,mo-1,1).getDay();
+  let heatCells='';
+  for(let i=0;i<startDow;i++) heatCells+=`<div></div>`;
+  dailyTotals.forEach(d=>{
+    heatCells+='<div class="rpt-hm-day'+(d.logged?' logged':'')+'" title="Day '+d.day+': '+(d.logged?'logged':'missed')+'"></div>';
+  });
+  // goal bars
+  let goalBarsHTML='';
+  gs.forEach(g=>{
+    const pct=loggedDays>0?Math.round(goalHitCounts[g.id]/loggedDays*100):0;
+    const color=pct>=80?'var(--g2)':pct>=60?'var(--amber)':'var(--red)';
+    goalBarsHTML+=`<div class="rpt-goal-bar-row"><div class="rpt-goal-bar-lbl">${g.name}</div><div class="rpt-goal-bar-track"><div class="rpt-goal-bar-fill" style="width:${pct}%;background:${color}"></div></div><div class="rpt-goal-bar-pct">${pct}%</div></div>`;
+  });
+  content.innerHTML=`
+    <div class="rpt-header">
+      <div class="rpt-logo">N<em style="color:rgba(255,255,255,0.5);font-style:italic">ourish</em></div>
+      <div class="rpt-month">${mn} <em>${yr}</em></div>
+      <div class="rpt-sub">Monthly Progress Report</div>
+      <div class="rpt-stats-row">
+        <div class="rpt-stat"><div class="rpt-stat-val">${loggedDays}</div><div class="rpt-stat-lbl">Days Logged</div></div>
+        <div class="rpt-stat"><div class="rpt-stat-val">${missedDays}</div><div class="rpt-stat-lbl">Missed</div></div>
+        <div class="rpt-stat"><div class="rpt-stat-val">${maxStreak}</div><div class="rpt-stat-lbl">Best Streak</div></div>
+        <div class="rpt-stat"><div class="rpt-stat-val">${avgGoalPct}%</div><div class="rpt-stat-lbl">Goal Hit Rate</div></div>
+      </div>
+    </div>
+    <div class="rpt-body">
+      <div class="rpt-section">
+        <div class="rpt-section-title">Message</div>
+        <div class="rpt-msg">${buildReportMessage(report)}</div>
+      </div>
+      <div class="rpt-section">
+        <div class="rpt-section-title">Activity Heatmap — ${mn}</div>
+        <div class="rpt-hm-labels"><div>Su</div><div>Mo</div><div>Tu</div><div>We</div><div>Th</div><div>Fr</div><div>Sa</div></div>
+        <div class="rpt-heatmap">${heatCells}</div>
+        <div style="display:flex;align-items:center;gap:6px;margin-top:6px"><div style="width:10px;height:10px;border-radius:2px;background:var(--g2)"></div><span style="font-family:monospace;font-size:0.55rem;color:var(--faint)">Logged</span><div style="width:10px;height:10px;border-radius:2px;background:var(--s3);margin-left:8px"></div><span style="font-family:monospace;font-size:0.55rem;color:var(--faint)">Missed</span></div>
+      </div>
+      ${gs.length?'<div class="rpt-section"><div class="rpt-section-title">Goal Achievement</div><div class="rpt-goal-bars">'+goalBarsHTML+'</div></div>':''}
+      <button class="rpt-dl-btn" onclick="downloadReport()">⬇ Save to Gallery</button>
+    </div>`;
+  document.getElementById('reportOverlay').classList.add('open');
+  // animate bars after render
+  setTimeout(()=>{document.querySelectorAll('.rpt-goal-bar-fill').forEach(b=>{const w=b.style.width;b.style.width='0';setTimeout(()=>b.style.width=w,50)})},100);
+}
+
+function closeReportModal(){document.getElementById('reportOverlay').classList.remove('open')}
+
+async function openReportsModal(){
+  await loadSavedReports();
+  const list=document.getElementById('reportsList');
+  list.innerHTML='';
+  if(!savedReports.length){
+    list.innerHTML=`<div style="text-align:center;padding:30px 0;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1rem;color:var(--faint)">No reports yet — they appear on the 1st of each month.</div>`;
+  } else {
+    savedReports.forEach((r,ri)=>{
+      const div=document.createElement('div');div.className='rpt-list-item';
+      div.innerHTML=`<div class="rpt-list-item-left"><div class="rpt-list-month">${monthName(r.mo)} ${r.yr}</div><div class="rpt-list-sub">${r.loggedDays}/${r.daysInMonth} days · ${r.avgGoalPct}% goals</div></div><div class="rpt-list-item-btns"><button class="rpt-list-btn" onclick="closeReportsListModal();showReportModal(savedReports[${ri}])">View</button></div>`;
+      list.appendChild(div);
+    });
+  }
+  document.getElementById('reportsListOverlay').classList.add('open');
+}
+function closeReportsListModal(){document.getElementById('reportsListOverlay').classList.remove('open')}
+
+async function downloadReport(){
+  const modal=document.getElementById('reportModal');
+  // Use html2canvas if available, else fallback
+  if(typeof html2canvas!=='undefined'){
+    try{
+      const canvas=await html2canvas(modal,{scale:2,useCORS:true,backgroundColor:'#ffffff'});
+      const link=document.createElement('a');link.download=`nourish-report-${new Date().toISOString().slice(0,7)}.png`;
+      link.href=canvas.toDataURL('image/png');link.click();
+      toast('Saved to downloads ✓','ok');
+    }catch(e){toast('Download failed','err')}
+  } else {
+    // load html2canvas then retry
+    const s=document.createElement('script');s.src='https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js';
+    s.onload=()=>downloadReport();document.head.appendChild(s);
+    toast('Preparing download…','ok');
+  }
+}
+
 
 // BOOT
 (async()=>{
