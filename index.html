@@ -1019,16 +1019,16 @@ async function addExercise(){
   const existing = exItems.find(e=>e.exercise_name.toLowerCase()===name.toLowerCase());
   if(existing){
     existing.sets.push(firstSet);
-    await sb.from('exercise_logs').update({sets:existing.sets}).eq('id',existing.id).eq('user_id',user.id);
+    await sb.from('exercise_logs').update({sets:JSON.stringify(existing.sets)}).eq('id',existing.id).eq('user_id',user.id);
     toast(name+' — set added','ok');
   } else {
     const {data,error} = await sb.from('exercise_logs').insert({
       user_id:user.id, log_date:selDate,
       exercise_name:name,
-      sets:[firstSet],
+      sets:JSON.stringify([firstSet]),
       unit:type||'kg'
     }).select().single();
-    if(error){toast('Error: '+error.message,'err');return;}
+    if(error){console.error('exercise insert error:',error);toast('Error: '+error.message,'err');return;}
     exItems.push({...data, sets:Array.isArray(data.sets)?data.sets:[firstSet]});
     toast(name+' logged ✓','ok');
   }
@@ -1058,7 +1058,8 @@ async function clearExercises(){
 async function saveExSets(id){
   const item = exItems.find(e=>e.id===id);
   if(!item) return;
-  await sb.from('exercise_logs').update({sets:item.sets}).eq('id',id).eq('user_id',user.id);
+  const {error} = await sb.from('exercise_logs').update({sets:JSON.stringify(item.sets)}).eq('id',id).eq('user_id',user.id);
+  if(error) console.error('saveExSets error:',error);
 }
 
 function renderExSummary(){
